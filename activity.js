@@ -43,7 +43,7 @@ function displayTime(inst=null) {
 // https://stackoverflow.com/questions/13893138/javascript-click-event-listener-on-multiple-elements-and-get-target-id
 buttons = document.getElementsByTagName('button');
 for (var i = 0; i < buttons.length; i++){
-    buttons[i].addEventListener('click',redirect(buttons[i]),false);
+    buttons[i].addEventListener('click',redirect,false);//(buttons[i]),false);
 }
 
 function redirect(task){
