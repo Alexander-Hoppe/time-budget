@@ -1,15 +1,15 @@
+//app object for initialization
+const app = {
+    running : false,
+    start: function() {
+        displayTime(testButton);
+    }
+};
+
 //https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript#221297
 if (!Date.now) {
     Date.now = function() { return new Date().getTime(); }
 }
-
-// We should use properties of the buttons that are updated by the functions
-// instead of using global variables
-//
-// let counting = false;
-// let resumeTime = 0;
-// let cumulativeTime = 0;
-// const button = "output";
 
 const testButton = {
     taskName: "testTask",
@@ -23,19 +23,15 @@ const testButton = {
   // }
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-    displayTime();
-});
-
 // https://www.wikihow.com/Display-Time-in-HTML
-function displayTime() {
-    if (testButton.counting === true) {
-        document.getElementById(testButton.outputId).innerHTML = countUp(1);//h+":"+m+":"+s;
-        setTimeout('displayTime()',1000);
+function displayTime(inst) {
+    if (inst.counting === true) {
+        document.getElementById(inst.outputId).innerHTML = countUp(1);//h+":"+m+":"+s;
+        setTimeout(displayTime,1000,inst);
     }
     else {
-        document.getElementById(testButton.outputId).innerHTML = testButton.cumulativeTime;//h+":"+m+":"+s;
-        setTimeout('displayTime()',1000);
+        document.getElementById(inst.outputId).innerHTML = inst.cumulativeTime;//h+":"+m+":"+s;
+        setTimeout(displayTime,1000,inst);
     }
 }
 
@@ -48,6 +44,11 @@ for (var i = 0; i < buttons.length; i++){
 function redirect(ev){
     // alert(ev.target.id);
     //--------------------------------------------------------------------------
+    // check, whether the app is running
+    if (app.running === false) {
+        app.start();
+        app.running = true;
+    }
     // start counting
     if (testButton.counting === false) {
         testButton.counting = true;
