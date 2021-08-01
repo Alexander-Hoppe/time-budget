@@ -1,12 +1,8 @@
-body = {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: left;
-    background-color: #000;
+.button {
+    background-color: #4CAF50;
+    width: 30%;
 }
-
-. button = {
-    background-color: #000;
+.buttonplus {
+    background-color: #4CAF50;
+    width: 10%;
 }
