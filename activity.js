@@ -5,10 +5,23 @@ if (!Date.now) {
 
 // We should use properties of the buttons that are updated by the functions
 // instead of using global variables
-let counting = false;
-let resumeTime = 0;
-let cumulativeTime = 0;
-const button = "output";
+//
+// let counting = false;
+// let resumeTime = 0;
+// let cumulativeTime = 0;
+// const button = "output";
+
+const testButton = {
+    taskName: "testTask",
+    id       : 0,
+    counting: false,
+    resumeTime : 0,
+    cumulativeTime : 0,
+    outputId : "testOutput"
+  // fullName : function() {
+  //   return this.firstName + " " + this.lastName;
+  // }
+};
 
 document.addEventListener("DOMContentLoaded", function() {
     displayTime();
@@ -16,13 +29,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // https://www.wikihow.com/Display-Time-in-HTML
 function displayTime() {
-    if (counting === true) {
-        document.getElementById(button).innerHTML = countUp(1);//h+":"+m+":"+s;
-        setTimeout('displayTime(button)',1000);
+    if (testButton.counting === true) {
+        document.getElementById(testButton.outputId).innerHTML = countUp(1);//h+":"+m+":"+s;
+        setTimeout('displayTime()',1000);
     }
     else {
-        document.getElementById(button).innerHTML = cumulativeTime;//h+":"+m+":"+s;
-        setTimeout('displayTime(button)',1000);
+        document.getElementById(testButton.outputId).innerHTML = testButton.cumulativeTime;//h+":"+m+":"+s;
+        setTimeout('displayTime()',1000);
     }
 }
 
@@ -36,18 +49,18 @@ function redirect(ev){
     // alert(ev.target.id);
     //--------------------------------------------------------------------------
     // start counting
-    if (counting === false) {
-        counting = true;
-        resumeTime = Math.floor(Date.now() / 1000);
+    if (testButton.counting === false) {
+        testButton.counting = true;
+        testButton.resumeTime = Math.floor(Date.now() / 1000);
     }
     // stop counting
     else {
-        counting = false;
+        testButton.counting = false;
     }
 }
 
 function countUp(refreshRate) {
-    cumulativeTime += refreshRate;
+    testButton.cumulativeTime += refreshRate;
 
-    return cumulativeTime;
+    return testButton.cumulativeTime;
 }
