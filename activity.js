@@ -43,10 +43,11 @@ function displayTime(inst=null) {
 // https://stackoverflow.com/questions/13893138/javascript-click-event-listener-on-multiple-elements-and-get-target-id
 buttons = document.getElementsByTagName('button');
 for (var i = 0; i < buttons.length; i++){
-    buttons[i].addEventListener('click',redirect,false);//(buttons[i]),false);
+    buttons[i].addEventListener('click',redirect);
 }
 
-function redirect(task){
+function redirect(ev){
+    console.log("you clicked on "+ev.target.id);
     // alert(task.target.id);
     //--------------------------------------------------------------------------
     // does a button instance for the clicked on innerHTML already exist?
@@ -61,13 +62,13 @@ function redirect(task){
     if (tt.counting === false) {
         tt.resumeTime = Math.floor(Date.now() / 1000);
         tt.counting = true;
-        console.log(tt.counting)
+        console.log("started counting")
         return;
     }
     // stop counting
     if (tt.counting === true) {
         tt.counting = false;
-        console.log(tt.counting)
+        console.log("stopped counting")
         return;
     }
 }
