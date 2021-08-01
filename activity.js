@@ -26,9 +26,15 @@ function displayTime() {
     }
 }
 
-let task = document.getElementById("task");
+// https://stackoverflow.com/questions/13893138/javascript-click-event-listener-on-multiple-elements-and-get-target-id
+buttons = document.getElementsByTagName('button');
+for (var i = 0; i < buttons.length; i++){
+    buttons[i].addEventListener('click',redirect,false);
+}
 
-task.addEventListener("click", async () => {
+function redirect(ev){
+    // alert(ev.target.id);
+    //--------------------------------------------------------------------------
     // start counting
     if (counting === false) {
         counting = true;
@@ -38,7 +44,7 @@ task.addEventListener("click", async () => {
     else {
         counting = false;
     }
-});
+}
 
 function countUp(refreshRate) {
     cumulativeTime += refreshRate;
