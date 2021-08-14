@@ -1,8 +1,15 @@
 .button {
     background-color: #4CAF50;
+    border: none;
     width: 30%;
+    line-height: 30vh;
+    font-size: 16px;
+    border-radius: 12px;
 }
 .buttonplus {
     background-color: #4CAF50;
-    width: 10%;
+    border: none;
+    width: 15%;
+    font-size: 16px;
+    border-radius: 12px;
 }
