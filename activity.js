@@ -25,6 +25,10 @@ class Task {
 function displayTime(inst=null) {
     if (inst.counting === true) {
         document.getElementById(inst.outputId).innerHTML = inst.countUp(1);
+        if (inst.cumulativeTime > inst.duration) {
+            document.getElementById(inst.name).style.width = "300px";
+            document.getElementById(inst.name).style['background-color'] = "#8b0000";
+        }
         setTimeout(displayTime,1000,inst); // https://www.w3schools.com/jsref/met_win_settimeout.asp
     }
     else {
@@ -47,7 +51,7 @@ function redirect(ev){
     //--------------------------------------------------------------------------
 
     if (!(ev.target.id in tasks)) { // does a button instance for the clicked on id already exist?
-        tasks[ev.target.id] = new Task(ev.target.id, 120); // if the key does not exist, instantiate a new button
+        tasks[ev.target.id] = new Task(ev.target.id, 7); // if the key does not exist, instantiate a new button
     }
 
     // check, whether the task is active
