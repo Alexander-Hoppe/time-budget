@@ -24,7 +24,7 @@ class Task {
 
 function displayTime(inst=null) {
     if (inst.counting === true) {
-        document.getElementById(inst.outputId).innerHTML = inst.countUp(1);
+        document.getElementById(inst.outputId).innerHTML = inst.countUp(1)+'/'+inst.duration;
         if (inst.cumulativeTime > inst.duration) {
             document.getElementById(inst.name).style.width = "300px";
             document.getElementById(inst.name).style['background-color'] = "#8b0000";
