@@ -6,7 +6,7 @@ if (!Date.now) {
 class Task {
     constructor(name, duration) {
         this.name = name;
-        this.duration = duration;
+        this.duration = 60*duration;
         this.active = false;
         this.counting = false;
         this.resumeTime = 0;
@@ -22,21 +22,27 @@ class Task {
     }
 }
 
+init = document.getElementsByClassName("button gradientbutton");
+for (var i = 0; i < init.length; i++){
+    targetHeight = Number(init[i].innerText.slice(-2,-1));
+    init[i].style['line-height'] = targetHeight*20 + "vh";
+}
+
 function displayTime(inst=null) {
     if (inst.counting === true) {
         document.getElementById(inst.name).style.background =
             "linear-gradient(#00E0B0 " + ((inst.duration-inst.cumulativeTime)/inst.duration)*100 +
             "%, #00BA92 " + ((inst.duration-inst.cumulativeTime)/inst.duration)*100 + "%)";
-        inst.countUp(1);
+        inst.countUp(.1);
         if (inst.cumulativeTime > inst.duration) {
-            document.getElementById(inst.name).style.width = (inst.cumulativeTime/inst.duration)*30 + "%";
-            document.getElementById(inst.name).style['background-color'] = "#8b0000";
+            document.getElementById(inst.name).style['line-height'] = (inst.cumulativeTime/inst.duration)*30 + "vh";
+            document.getElementById(inst.name).style['background'] = "#4F0080";
         }
-        setTimeout(displayTime,1000,inst); // https://www.w3schools.com/jsref/met_win_settimeout.asp
+        setTimeout(displayTime,100,inst); // https://www.w3schools.com/jsref/met_win_settimeout.asp
     }
     else {
         //document.getElementById(inst.outputId).innerHTML = inst.cumulativeTime;// + " " + inst.name;//h+":"+m+":"+s;
-        setTimeout(displayTime,1000,inst); // https://www.w3schools.com/jsref/met_win_settimeout.asp
+        setTimeout(displayTime,100,inst); // https://www.w3schools.com/jsref/met_win_settimeout.asp
     }
 }
 
@@ -54,7 +60,9 @@ function redirect(ev){
     //--------------------------------------------------------------------------
 
     if (!(ev.target.id in tasks)) { // does a button instance for the clicked on id already exist?
-        tasks[ev.target.id] = new Task(ev.target.id, 7); // if the key does not exist, instantiate a new button
+        T = document.getElementById(ev.target.id).innerText; // Grab the time budget for the task
+        T = T.slice(-2,-1);
+        tasks[ev.target.id] = new Task(ev.target.id, Number(T)); // if the key does not exist, instantiate a new button
     }
 
     // check, whether the task is active
