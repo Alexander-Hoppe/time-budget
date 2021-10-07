@@ -1,18 +1,20 @@
 .gradientbutton {
     background: #00E0B0;
     border: none;
-    width: 30%;
+    width: 25%;
     line-height: 30vh;
-    font-size: 16px;
-    border-radius: 12px;
+    font-size: 24px;
+    color: #FFFFFF;
+    border-radius: 24px;
 }
 .buttonplus {
     background-color: #E77AFF;
     border: none;
-    width: 15%;
-    line-height: 10;
-    font-size: 16px;
-    border-radius: 12px;
+    width: 10%;
+    line-height: 8vh;
+    font-size: 48px;
+    color: #FFFFFF;
+    border-radius: 24px;
 }
 
 .button:hover {
