@@ -24,15 +24,18 @@ class Task {
 
 function displayTime(inst=null) {
     if (inst.counting === true) {
-        document.getElementById(inst.outputId).innerHTML = inst.countUp(1)+'/'+inst.duration;
+        document.getElementById(inst.name).style.background =
+            "linear-gradient(#00E0B0 " + ((inst.duration-inst.cumulativeTime)/inst.duration)*100 +
+            "%, #00BA92 " + ((inst.duration-inst.cumulativeTime)/inst.duration)*100 + "%)";
+        inst.countUp(1);
         if (inst.cumulativeTime > inst.duration) {
-            document.getElementById(inst.name).style.width = "300px";
+            document.getElementById(inst.name).style.width = (inst.cumulativeTime/inst.duration)*30 + "%";
             document.getElementById(inst.name).style['background-color'] = "#8b0000";
         }
         setTimeout(displayTime,1000,inst); // https://www.w3schools.com/jsref/met_win_settimeout.asp
     }
     else {
-        document.getElementById(inst.outputId).innerHTML = inst.cumulativeTime;// + " " + inst.name;//h+":"+m+":"+s;
+        //document.getElementById(inst.outputId).innerHTML = inst.cumulativeTime;// + " " + inst.name;//h+":"+m+":"+s;
         setTimeout(displayTime,1000,inst); // https://www.w3schools.com/jsref/met_win_settimeout.asp
     }
 }
