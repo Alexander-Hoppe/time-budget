@@ -6,7 +6,7 @@ if (!Date.now) {
 class Task {
     constructor(name, duration) {
         this.name = name;
-        this.duration = 60*duration;
+        this.duration = 3600*duration;
         this.active = false;
         this.counting = false;
         this.resumeTime = 0;
@@ -35,7 +35,8 @@ function displayTime(inst=null) {
             "%, #00BA92 " + ((inst.duration-inst.cumulativeTime)/inst.duration)*100 + "%)";
         inst.countUp(.1);
         if (inst.cumulativeTime > inst.duration) {
-            document.getElementById(inst.name).style['line-height'] = (inst.cumulativeTime/inst.duration)*30 + "vh";
+            document.getElementById(inst.name).style['line-height'] =
+                (inst.cumulativeTime/inst.duration)*inst.duration/3600*20 + "vh";
             document.getElementById(inst.name).style['background'] = "#4F0080";
         }
         setTimeout(displayTime,100,inst); // https://www.w3schools.com/jsref/met_win_settimeout.asp
