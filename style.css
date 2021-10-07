@@ -1,5 +1,5 @@
-.button {
-    background-color: #4CAF50;
+.gradientbutton {
+    background: #00E0B0;
     border: none;
     width: 30%;
     line-height: 30vh;
@@ -7,9 +7,15 @@
     border-radius: 12px;
 }
 .buttonplus {
-    background-color: #4CAF50;
+    background-color: #E77AFF;
     border: none;
     width: 15%;
+    line-height: 10;
     font-size: 16px;
     border-radius: 12px;
+}
+
+.button:hover {
+    opacity: 0.9;
+    filter: alpha(opacity=90);
 }
